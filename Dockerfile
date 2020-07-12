@@ -1,10 +1,11 @@
 FROM openjdk:8u212-jre-alpine
 
-ARG kafka_version=2.5.0
+ARG kafka_version=2.7.0-SNAPSHOT
 ARG scala_version=2.12
 ARG glibc_version=2.31-r0
 ARG vcs_ref=unspecified
 ARG build_date=unspecified
+ARG kafka_trunk_url=https://github.com/ning2008wisc/kafka-trunk-binary/raw/master/kafka_2.12-2.7.0-SNAPSHOT.tgz
 
 LABEL org.label-schema.name="kafka" \
       org.label-schema.description="Apache Kafka" \
@@ -18,7 +19,8 @@ LABEL org.label-schema.name="kafka" \
 ENV KAFKA_VERSION=$kafka_version \
     SCALA_VERSION=$scala_version \
     KAFKA_HOME=/opt/kafka \
-    GLIBC_VERSION=$glibc_version
+    GLIBC_VERSION=$glibc_version \
+    KAFKA_TRUNK_URL=$kafka_trunk_url
 
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
